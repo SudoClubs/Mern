@@ -1,56 +1,31 @@
-name: Arbeitsblatt 3 GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push, pull_request]
-jobs:
-  Linting:
-    runs-on: [self-hosted, linux, x64, multipass]
-    
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-      - run: npm install
-      
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: npm run lint
-  Testing:
-    runs-on: [self-hosted, linux, x64, multipass]
-    
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-      - run: npm install
-      
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: npm run test
-  Building:
-    runs-on: [self-hosted, linux, x64, multipass]
-    
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-      - run: npm install
-      
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: npm run build
+name: CI/CD Pipeline
 
+on:
+  push:
+    branches:
+      - JasaroskaAdrian-patch-1 
+
+jobs:
+  docker:
+    labels: [self-hosted]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: jerrythemyth
+          password: Adrian2007
+
+      - name: Set up QEMU (for multi-platform builds)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .  # Git context is automatically used
+          push: true
+          tags: jerrythemyth/my-typescript-app:1.0.1
