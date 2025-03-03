@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN npm run lint && npm run test && npm run build
 
 EXPOSE 3000
 
