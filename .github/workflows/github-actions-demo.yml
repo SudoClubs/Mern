@@ -1,72 +1,11 @@
-name: Arbeitsblatt 3 GitHub Actions Demo
+name: ci
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on: [push, pull_request]
 
 jobs:
-  Linting:
-    runs-on: [self-hosted, linux, x64, multipass]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-
-      - name: Install dependencies
-        run: npm install
-      
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-
-      - name: Run Linting
-        run: npm run lint
-
-  Testing:
-    runs-on: [self-hosted, linux, x64, multipass]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-
-      - name: Install dependencies
-        run: npm install
-      
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-
-      - name: Run Tests
-        run: npm run test
-
-  Building:
-    runs-on: [self-hosted, linux, x64, multipass]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  
-
-      - name: Install dependencies
-        run: npm install
-      
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-
-      - name: Run Build
-        run: npm run build
-
   Docker:
     runs-on: [self-hosted, linux, x64, multipass]
-    needs: [Linting, Testing, Building]  # Runs only if previous jobs succeed
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
