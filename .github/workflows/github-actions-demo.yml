@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-    labels: [self-hosted]
+    label: [self-hosted]
     steps:
       - name: Checkout
         uses: actions/checkout@v4 
