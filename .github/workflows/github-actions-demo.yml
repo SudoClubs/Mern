@@ -47,12 +47,7 @@ jobs:
         with:
           k8-config-file-paths: |
             .k8s/namespace.yml
-            .k8s/ui/nuxt-envs.yml
-            .k8s/ui/deployment.yml
-            .k8s/ui/service.yml
-            .k8s/ui/ingress.yml
-            .k8s/api/strapi-envs.yml
-            .k8s/api/deployment.yml
-            .k8s/api/service.yml
-            .k8s/api/ingress.yml
+            .k8s/deployment.yml
+            .k8s/service.yml
+            .k8s/ingress.yml
           replacement-method: defined
