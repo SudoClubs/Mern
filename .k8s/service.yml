@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: JasaroskasApp # Change this to your app name
+  name: jasaroskasapp # Change this to your app name
   namespace: m324-csbe-jasaroska # Ask the teacher for the namespace name
 spec:
   ports:
@@ -9,4 +9,4 @@ spec:
       targetPort: http
       protocol: TCP
   selector:
-    app: JasaroskasApp # Change this to your app name
+    app: jasaroskasapp # Change this to your app name

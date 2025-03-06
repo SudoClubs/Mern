@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: JasaroskasApp # Change this to your app name
+  name: jasaroskasapp # Change this to your app name
   namespace: m324-csbe-jasaroska # Ask the teacher for the namespace name
   labels:
-    app: JasaroskasApp # Change this to your app name
+    app: jasaroskasapp # Change this to your app name
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: JasaroskasApp # Change this to your app name
+      app: jasaroskasapp # Change this to your app name
   template:
     metadata:
       labels:
-        app: JasaroskasApp # Change this to your app name
+        app: jasaroskasapp # Change this to your app name
     spec:
       containers:
-        - name: JasaroskasApp # Change this to your app name
+        - name: jasaroskasapp # Change this to your app name
           image: jerrythemyth/my-typescript-app:latest # Change this to your image tag
           command:
             - /bin/sh
